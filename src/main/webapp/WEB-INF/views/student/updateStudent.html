@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #ddd;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Add padding to containers */
+        .container {
+            padding: 22px;
+            background-color: white;
+        }
+
+        /* Full-width input fields */
+        input[type=text], input[type=password], input[type=date], input[type=email], input[type=number]{
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        input[type=text]:focus, input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        /* Overwrite default styles of hr */
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+        }
+
+        /* Set a style for the submit button */
+        .registerbtn {
+            background-color: #04AA6D;
+            border-radius: 15px;
+            color: white;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
+
+        .registerbtn:hover {
+            opacity: 1;
+        }
+
+        a {
+            color: dodgerblue;
+        }
+
+        form{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 100px;
+        }
+        div{
+            border-radius: 15px;
+        }
+
+        select{
+            width: 17%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+    </style>
+</head>
+<body>
+
+<form  action="#"
+       th:action="@{/{groupId}/{id}/saveUpdateStudent(groupId=${groupId},id=${student.id})}"
+       th:object="${student}"
+       method="POST">
+    <div class="container">
+        <hr>
+        <input type="hidden" name="id" th:field="*{id}">
+        <label for="email"><b>First Name</b></label>
+        <input type="text" placeholder="Enter first name" th:field="*{firstName}" name="email" id="email" required>
+        <label for="email"><b>Last Name</b></label>
+        <input type="text" placeholder="Enter last name" th:field="*{lastName}" name="email" id="email1" required>
+        <label for="email"><b>Email</b></label>
+        <input type="email" placeholder="Enter email" th:field="*{email}" name="email" id="email2" required>
+        <label for="email"><b>Phone number</b></label>
+        <input type="text" placeholder="Enter phone number" th:field="*{phoneNumber}" name="email" id="email3" required>
+        <label><b>Study format</b></label>
+        <br>
+        <label>
+            <select th:field="*{studyFormat}">
+                <option th:value="${studyFormatOnline}">online</option>
+                <option th:value="${studyFormatOffline}">offline</option>
+            </select>
+        </label>
+
+
+
+        <hr>
+        <button type="submit" class="registerbtn">Save student</button>
+    </div>
+</form>
+
+</body>
+</html>
