@@ -16,8 +16,13 @@ public class InstructorServiceImpl implements InstructorService {
     }
 
     @Override
-    public void saveInstructor(Instructor instructor) {
-        instructorRepository.saveInstructor(instructor);
+    public List<Instructor> getAllInstructor() {
+        return instructorRepository.getAllInstructor();
+    }
+
+    @Override
+    public void saveInstructorByCourseId(Long courseId,Instructor instructor) {
+        instructorRepository.saveInstructorByCourseId(courseId,instructor);
     }
 
     @Override

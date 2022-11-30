@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
-
 @Repository
 @Transactional
 public class InstructorRepositoryImpl implements InstructorRepository {
@@ -17,7 +16,14 @@ public class InstructorRepositoryImpl implements InstructorRepository {
     private EntityManager entityManager;
 
     @Override
-    public void saveInstructor(Instructor instructor) {
+    public List<Instructor> getAllInstructor() {
+        return entityManager.createQuery("select i from Instructor i").getResultList();
+    }
+
+    @Override
+    public void saveInstructorByCourseId(Long courseId,Instructor instructor) {
+        Course course = entityManager.find(Course.class,courseId);
+        instructor.setCourse(course);
         entityManager.persist(instructor);
     }
 
@@ -35,13 +41,13 @@ public class InstructorRepositoryImpl implements InstructorRepository {
 
     @Override
     public void update(Long id,Instructor instructor) {
-        Instructor instructor1 = entityManager.find(Instructor.class,id);
+        Instructor instructor1 = entityManager.find(Instructor.class, id);
         instructor1.setFirstName(instructor.getFirstName());
         instructor1.setPhoneNumber(instructor.getPhoneNumber());
         instructor1.setEmail(instructor.getEmail());
         instructor1.setSpecialization(instructor.getSpecialization());
         instructor1.setLastName(instructor.getLastName());
-        entityManager.merge(instructor);
+        entityManager.merge(instructor1);
     }
 
     @Override

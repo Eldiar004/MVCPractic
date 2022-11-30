@@ -13,13 +13,18 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public List<Course> getAllCourse() {
+        return courseRepository.getAllCourse();
+    }
+
+    @Override
     public void saveCourseByCompanyId(Long id, Course course) {
         courseRepository.saveCourseByCompanyId(id,course);
     }
 
     @Override
-    public List<Course> getAllCourses(Long companyId) {
-        return courseRepository.getAllCourses(companyId);
+    public List<Course> getAllCoursesByCompanyId(Long companyId) {
+        return courseRepository.getAllCoursesByCompanyId(companyId);
     }
 
     @Override

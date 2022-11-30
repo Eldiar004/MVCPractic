@@ -5,7 +5,8 @@ import peaksoft.model.Instructor;
 import java.util.List;
 
 public interface InstructorService {
-    void saveInstructor(Instructor instructor);
+    List<Instructor> getAllInstructor();
+    void saveInstructorByCourseId(Long courseId,Instructor instructor);
 
     void deleteInstructorById(Long id);
 

@@ -2,14 +2,12 @@ package peaksoft.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import peaksoft.model.Lesson;
 import peaksoft.service.LessonService;
 
 @Controller
+@RequestMapping
 public class LessonController {
 
     private final LessonService lessonService;
@@ -41,7 +39,7 @@ public class LessonController {
         lessonService.deleteById(id);
         return "redirect:/getLessons/"+courseId;
     }
-    @GetMapping("/{id}/update")
+    @GetMapping("/{id}/updateLessons")
     public String update(@PathVariable("id")Long id,Model model){
         Lesson lesson = lessonService.getById(id);
         model.addAttribute("lesson",lesson);

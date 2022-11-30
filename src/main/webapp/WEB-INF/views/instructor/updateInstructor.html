@@ -1,10 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>update-instructor</title>
+    <style>
+        body{
+            background-image: url("https://wallpaperaccess.com/full/1140733.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+
+        }
+    </style>
 </head>
 <body>
+<form
+        action="#"
+        th:action="@{/{courseId}/{id}/updateInstructor(courseId=${courseId},id=${instructor.id})}"
+        th:object="${instructor}"
+        method="post">
 
+    <input type="hidden" name="id" th:field="*{id}">
+    <input type="text" name="firstName" th:field="*{firstName}" placeholder="First Name">
+    <br><br>
+    <input type="text" name="lastName" th:field="*{lastName}" placeholder="Last Name">
+    <br><br>
+    <input type="text" name="email" th:field="*{email}" placeholder="email">
+
+    <input type="text" name="email" th:field="*{phoneNumber}" placeholder="PhoneNumber">
+
+    <input type="text" name="email" th:field="*{specialization}" placeholder="Specialization">
+    <input type="submit" value="Add">
+
+</form>
 </body>
 </html>

@@ -64,12 +64,12 @@
         <td th:text="${student.phoneNumber}"></td>
         <td th:text="${student.studyFormat}"></td>
 
-        <td><a th:href="@{/updateStudent/{id}(id=${student.id})}">
+        <td><a th:href="@{/updateStudent/{id}(id=${groupId})}">
             <button>Update</button>
         </a>
         </td>
 
-        <td><a th:href="@{/{groupId}/{id}/deleteStudent(groupId=${groupId}, id=${student.id})}">\
+        <td><a th:href="@{/{groupId}/{id}/deleteStudent(groupId=${groupId}, id=${student.id})}">
             <button>Delete</button>
         </a>
         </td>

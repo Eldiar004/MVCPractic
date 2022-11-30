@@ -1,22 +1,23 @@
 package peaksoft.repository.repositoryImpl;
-
 import org.springframework.stereotype.Repository;
-import peaksoft.model.Company;
 import peaksoft.model.Group;
 import peaksoft.model.Student;
 import peaksoft.repository.StudentRepository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
-
 @Repository
 @Transactional
 public class StudentRepositoryImpl implements StudentRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
+
+    @Override
+    public List<Student> getAllStudent() {
+        return entityManager.createQuery("select s from Student s").getResultList();
+    }
 
     @Override
     public void saveStudent(Long id,Student student) {
@@ -46,13 +47,21 @@ public class StudentRepositoryImpl implements StudentRepository {
         student1.setStudyFormat(student.getStudyFormat());
         student1.setFirstName(student.getFirstName());
         student1.setLastName(student.getLastName());
-        entityManager.merge(student);
+        student1.setId(student.getId());
+        entityManager.merge(student1);
     }
 
     @Override
     public void assignStudentToGroupById(Long studentId, Long groupId) {
-        Student student = entityManager.find(Student.class,groupId);
+        Student student = entityManager.find(Student.class,studentId);
         Group group = entityManager.find(Group.class,groupId);
+        if (group.getStudents()!=null){
+            for (Student g : group.getStudents()) {
+                if (g.getId() == studentId) {
+                    System.out.println("This student already exists!");;
+                }
+            }
+        }
         student.setGroup(group);
         entityManager.merge(student);
     }

@@ -8,7 +8,7 @@
     <title>Courses</title>
     <style>
         body{
-            background-image: url("https://wallpaperaccess.com/full/2741659.jpg");
+            background-image: url("https://wallpaperaccess.com/full/1140733.jpg");
             background-repeat: no-repeat;
             background-size: cover;
 
@@ -49,6 +49,7 @@
         <th scope="col">Date of start</th>
         <th scope="col">image</th>
         <th scope="col">Student</th>
+        <th scope="col">AssStudent</th>
         <th scope="col">Update</th>
         <th scope="col">Delete</th>
     </tr>
@@ -64,6 +65,17 @@
             <button>Student</button>
         </a>
         </td>
+
+        <td> <form th:method="POST"
+                   th:action="@{/{groupId}/assignStudent(groupId=${group.id})}">
+            <select name="instructor" class="form-select form-select-sm" aria-label=".form-select-sm example"
+                    th:object="${student}"th:field="*{id}">
+                <option th:each="student : ${students}"
+                        th:value="${student.id}"
+                        th:text="${student.firstName}"></option>
+            </select>
+            <input type="submit" value="submit"/>
+        </form></td>
 
         <td><a th:href="@{/{courseId}/update/{id}(courseId=${courseId},id=${group.id})}">
             <button>Update</button>

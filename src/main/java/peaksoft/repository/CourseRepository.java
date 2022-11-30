@@ -2,9 +2,10 @@ package peaksoft.repository;
 import peaksoft.model.Course;
 import java.util.List;
 public interface CourseRepository {
+    List<Course>getAllCourse();
     void saveCourseByCompanyId(Long id, Course course);
 
-    List<Course> getAllCourses(Long companyId);
+    List<Course> getAllCoursesByCompanyId(Long companyId);
 
     void deleteById(Long id);
 

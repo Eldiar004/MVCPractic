@@ -3,6 +3,7 @@ import peaksoft.model.Company;
 import peaksoft.model.Student;
 import java.util.List;
 public interface StudentRepository {
+    List<Student>getAllStudent();
     void saveStudent(Long id,Student student);
 
     void deleteById(Long id);

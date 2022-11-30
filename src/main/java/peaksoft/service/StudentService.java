@@ -5,6 +5,7 @@ import peaksoft.model.Student;
 import java.util.List;
 
 public interface StudentService {
+    public List<Student> getAllStudent();
     void saveStudent(Long id,Student student);
 
     void deleteById(Long id);
